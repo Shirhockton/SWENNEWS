@@ -21,6 +21,7 @@ $(document).ready(function(){
             slide_flag=false;
         }
     });
+    loadMore();
     $(".three_points").click(function(){
         $(".tag_panel").slideToggle("fast");
     });
@@ -30,11 +31,11 @@ $(document).ready(function(){
         });
         var t=setTimeout("window.location.href=\"detail.html\"",500);
     });
-    $("body").scroll(function(){
-        if(scrollTop + windowHeight == scrollHeight){
-            alert("已经到最底部了！");
-        }
-    });
+    var waypoints = $('#handler-first').waypoint(function(direction) {
+        notify(this.element.id + ' hit 25% from top of window')
+    }, {
+        offset: '25%'
+    })
 });
 function newest_moouse_over() {
     if(1!=selected)
@@ -138,15 +139,15 @@ function init(selected)
 
     }
 }
-$(".main").scroll(function(){
-    var scrollTop = $(this).scrollTop();
-    var scrollHeight = $(this).height();
-    var windowHeight = $(this).height();
-    alert("已经到最底部了！");
-    if(scrollTop == scrollHeight){
-        alert("已经到最底部了！");
-    }
-});
+// $(".main").scroll(function(){
+//     var scrollTop = $(this).scrollTop();
+//     var scrollHeight = $(this).height();
+//     var windowHeight = $(this).height();
+//     alert("已经到最底部了！");
+//     if(scrollTop == scrollHeight){
+//         alert("已经到最底部了！");
+//     }
+// });
 function three_points() {
 
 }
@@ -186,4 +187,16 @@ function create_confrim() {
         top:'-=1013px'
     });
     var t=setTimeout("window.location.href=\"main.html\"",500);
+}
+
+function loadMore() {
+    $(window).scroll(
+        function() {
+            var scrollTop = $(this).scrollTop();
+            var scrollHeight = $(document).height();
+            var windowHeight = $(this).height();
+            if (scrollTop + windowHeight == scrollHeight) {
+                alert("弹弹弹");
+            }
+        });
 }
