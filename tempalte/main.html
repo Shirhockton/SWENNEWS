@@ -19,7 +19,7 @@
         <img id="swen_news" src="../static/images/SwenNews.png" class="swen-news" onclick="swen_news_click()">
         <span class="newest" onmouseover="newest_moouse_over()" onmouseout="newest_moouse_out()" onmousedown="newest_click()">最新新闻</span>
         <span class="hot" onmouseover="hot_moouse_over()" onmouseout="hot_moouse_out()" onmousedown="hot_click()">热门新闻</span>
-        <span class="tagged" onmouseover="tagged_moouse_over()" onmouseout="tagged_moouse_out()" onmousedown="tagged_click()">分类新闻</span>
+        <span class="tagged" onmouseover="tagged_moouse_over()" onmouseout="tagged_moouse_out()" onmousedown="tagged_click()">栏目新闻</span>
         <img src="../static/images/user.png" class="user">
         <div class="panel" >
             <ul>
@@ -38,7 +38,7 @@
         <form class="create_form">
             <ul class="create_ul">
                 <li class="create_title" >创建属于你的新闻</li>
-                <li><input name="loginName" type="text" id="title" placeholder="标题" class="news_title"></li>
+                <li><input name="loginName" type="text" id="title" placeholder="新闻标题" class="news_title"></li>
                 <li> <div class="tag">
                     <span class="tag_text">新闻类型</span>
                     <div class="three_points">
@@ -60,10 +60,10 @@
                 <li><textarea rows="3" cols="20" class="news_content" placeholder="正文" > </textarea></li>
             </ul>
         </form>
-        <div class="create_confirm" onmousedown="create_confrim()">
+        <div class="create_confirm" onmousedown="create_confirm()">
         </div>
     </div>
-    <div class="shelter"></div>
+    <div class="shelter" onclick="shelter_click()"></div>
 </div>
 </body>
 </html>

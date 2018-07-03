@@ -183,7 +183,7 @@ function tag_6_click() {
     $(".tag_text").css('color','#000000');
     $(".tag_panel").slideToggle("fast");
 }
-function create_confrim() {
+function create_confirm() {
     $(".shelter").css('display','none');
     $(".create_news").animate({
         top:'-=1013px'
@@ -210,6 +210,13 @@ function createNews() {
             );
         })
     })
+}
+function shelter_click() {
+    $(".shelter").css('display','none');
+    $(".create_news").animate({
+        top:'-=1013px'
+    });
+    create_flag=false;
 }
 function swen_news_click(){
     window.location.href="main.html"

@@ -93,7 +93,7 @@ ul li{
     cursor: pointer;
 }
 .new{
-    z-index: 9999;
+    z-index: 15;
     position: fixed;
     right: 101px;
     bottom: 66px;
@@ -224,6 +224,7 @@ div.panel{
     position: fixed;
     top: 0px;
     left: 0px;
+    cursor: auto;
 }
 input::-webkit-input-placeholder{
     color: #cfcfcf;

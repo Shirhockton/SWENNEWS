@@ -1,4 +1,5 @@
 var selected = 1
+var edit_flag=false;
 $(document).ready(function(){
     var slide_flag=false;
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
@@ -58,4 +59,21 @@ function exit_mouse_click(){
 }
 function swen_news_click(){
     window.location.href="main.html"
+}
+function edit_info() {
+    if(!edit_flag){
+        $(".shelter_user_center").css('display','block');
+        $(".info_edit").animate({
+            top:'+=1100px'
+        });
+        edit_flag=true;
+    }
+    else
+    {
+        $(".shelter_user_center").css('display','none');
+        $(".info_edit").animate({
+            top:'-=1100px'
+        });
+        edit_flag=false;
+    }
 }
