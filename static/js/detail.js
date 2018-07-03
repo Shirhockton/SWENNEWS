@@ -90,3 +90,6 @@ function tagged_click() {
     $(".newest").css('background-image','url(../static/images/blank.png)')
     $(".hot").css('background-image','url(../static/images/blank.png)')
 }
+function swen_news_click(){
+    window.location.href="main.html"
+}

@@ -16,7 +16,7 @@
 <body>
 <div class="main">
     <div class="top">
-        <img id="swen_news" src="../static/images/SwenNews.png" class="swen-news">
+        <img id="swen_news" src="../static/images/SwenNews.png" class="swen-news" onclick="swen_news_click()">
         <span class="newest" onmouseover="newest_moouse_over()" onmouseout="newest_moouse_out()" onmousedown="newest_click()">最新新闻</span>
         <span class="hot" onmouseover="hot_moouse_over()" onmouseout="hot_moouse_out()" onmousedown="hot_click()">热门新闻</span>
         <span class="tagged" onmouseover="tagged_moouse_over()" onmouseout="tagged_moouse_out()" onmousedown="tagged_click()">分类新闻</span>
@@ -24,18 +24,13 @@
         <div class="panel" >
             <ul>
                 <li><span class="me" onmousedown="user_center_click()">用户中心</span> </li>
-                <li><span class="my_news">我的新闻</span> </li>
+                <li><span class="my_news" onmousedown="my_news_click()">我的新闻</span> </li>
                 <li><span class="exit">退出登录</span> </li>
             </ul>
         </div>
     </div>
     <div class="main_in_main">
-        <ul>
-            <li><img class="main_block" id="main_block_1" src="../static/images/newsbg.png"></li>
-            <li><img class="main_block" id="main_block_2" src="../static/images/newsbg.png"></li>
-            <li><img class="main_block" id="main_block_3" src="../static/images/newsbg.png"></li>
-            <li><img class="main_block" id="main_block_4" src="../static/images/newsbg.png"></li>
-            <li><img class="main_block" id="main_block_5" src="../static/images/newsbg.png"></li>
+        <ul class="news_block_ul">
         </ul>
     </div>
     <img src="../static/images/navbtn.png" class="new" name="new" id="new" onmousedown="create_news()">
@@ -46,7 +41,7 @@
                 <li><input name="loginName" type="text" id="title" placeholder="标题" class="news_title"></li>
                 <li> <div class="tag">
                     <span class="tag_text">新闻类型</span>
-                    <div class="three_points" onclick="three_points()">
+                    <div class="three_points">
                         <img src="../static/images/three_points.png" >
                     </div>
                     <div class="tag_panel">

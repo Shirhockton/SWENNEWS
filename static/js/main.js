@@ -1,14 +1,12 @@
 var selected=1;
 var tag_sel=-1;//-1 未选中，1时政，2科技，3娱乐，4游戏，5体育，6财经
 var create_flag=false;
-var scrollTop = $("body").scrollTop();
-var scrollHeight = $("body").height();
-var windowHeight = $("body").height();
 $(document).ready(function(){
     var num=0;
     var angle=0;
     var slide_flag=false;
     var tag_slide_flag=false;
+    createNews();
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
         if(!slide_flag)
@@ -21,15 +19,8 @@ $(document).ready(function(){
             slide_flag=false;
         }
     });
-    loadMore();
     $(".three_points").click(function(){
         $(".tag_panel").slideToggle("fast");
-    });
-    $(".main_block").click(function(){
-        $(".main_block").animate({
-            top:'+=2000px',
-        });
-        var t=setTimeout("window.location.href=\"detail.html\"",500);
     });
     var waypoints = $('#handler-first').waypoint(function(direction) {
         notify(this.element.id + ' hit 25% from top of window')
@@ -37,6 +28,14 @@ $(document).ready(function(){
         offset: '25%'
     })
 });
+function main_block_click(newsid) {
+    $(".main_block").animate({
+        top:'+=2000px',
+    });
+    var text="window.location.href=\"detail.html?id="+newsid+"\"";
+    var t=setTimeout(text,500);
+    // var t=setTimeout("window.location.href=\"detail.html\"",500);
+}
 function newest_moouse_over() {
     if(1!=selected)
     {
@@ -124,6 +123,9 @@ function create_news() {
 function user_center_click() {
     window.location.href="user_center.html"
 }
+function my_news_click() {
+    window.location.href="user_center.html"
+}
 function init(selected)
 {
     if(1==selected)
@@ -174,12 +176,12 @@ function tag_4_click() {
 function tag_5_click() {
     $(".tag_text").text("体育");
     $(".tag_text").css('color','#000000');
-    $(".tag_panel").slideDown("fast");
+    $(".tag_panel").slideToggle("fast");
 }
 function tag_6_click() {
     $(".tag_text").text("财经");
     $(".tag_text").css('color','#000000');
-    $(".tag_panel").slideUp("fast");
+    $(".tag_panel").slideToggle("fast");
 }
 function create_confrim() {
     $(".shelter").css('display','none');
@@ -189,14 +191,26 @@ function create_confrim() {
     var t=setTimeout("window.location.href=\"main.html\"",500);
 }
 
-function loadMore() {
-    $(window).scroll(
-        function() {
-            var scrollTop = $(this).scrollTop();
-            var scrollHeight = $(document).height();
-            var windowHeight = $(this).height();
-            if (scrollTop + windowHeight == scrollHeight) {
-                alert("弹弹弹");
-            }
-        });
+
+function createNews() {
+    $.getJSON("demo.json",function (data) {
+        // alert("yeah")
+        $.each(data,function (index,item) {
+            // alert(index+item.title);
+            $(".news_block_ul").append(
+                "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
+                "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
+                "<li><span class='news_block_title'>"+item.title+"</span><li>" +
+                "<li><span class='news_block_content'>"+item.content+"</span><li>"+
+                "<span class='head_icon'></span>"+
+                "<span class='date_time'></span>"+
+                "<li><span class='news_block_author'>"+item.username+"</span></li>"+
+                "<li><span class='news_block_date'>"+item.datetime+"<li>"+
+                "</ul></div><li>"
+            );
+        })
+    })
+}
+function swen_news_click(){
+    window.location.href="main.html"
 }
