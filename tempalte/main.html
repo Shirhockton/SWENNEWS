@@ -17,9 +17,9 @@
 <div class="main">
     <div class="top">
         <img id="swen_news" src="../static/images/SwenNews.png" class="swen-news" onclick="swen_news_click()">
-        <span class="newest" onmouseover="newest_moouse_over()" onmouseout="newest_moouse_out()" onmousedown="newest_click()">最新新闻</span>
-        <span class="hot" onmouseover="hot_moouse_over()" onmouseout="hot_moouse_out()" onmousedown="hot_click()">热门新闻</span>
-        <span class="tagged" onmouseover="tagged_moouse_over()" onmouseout="tagged_moouse_out()" onmousedown="tagged_click()">栏目新闻</span>
+        <span class="newest" onmouseover="newest_mouse_over()" onmouseout="newest_mouse_out()" onmousedown="newest_click()">最新新闻</span>
+        <span class="hot" onmouseover="hot_mouse_over()" onmouseout="hot_mouse_out()" onmousedown="hot_click()">热门新闻</span>
+        <span class="tagged" onmouseover="tagged_mouse_over()" onmouseout="tagged_mouse_out()" onmousedown="tagged_click()">栏目新闻</span>
         <img src="../static/images/user.png" class="user">
         <div class="panel" >
             <ul>
@@ -32,6 +32,10 @@
     <div class="main_in_main">
         <ul class="news_block_ul">
         </ul>
+        <div class="change_page" >
+            <img src="../static/images/last_page.png" class="last_page_pic" onclick="last_page_click()">
+            <img src="../static/images/next_page.png" class="next_page_pic" onclick="next_page_click()">
+        </div>
     </div>
     <img src="../static/images/navbtn.png" class="new" name="new" id="new" onmousedown="create_news()">
     <div class="create_news">

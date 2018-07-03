@@ -26,13 +26,13 @@ function load(load_flag) {
         load_flag=true;
     }
 }
-function newest_moouse_over() {
+function newest_mouse_over() {
     if(1!=selected)
     {
         $(".newest").css('background-image','url(../static/images/buttonDown.png)')
     }
 }
-function newest_moouse_out() {
+function newest_mouse_out() {
     if(1==selected)
     {
         $(".newest").css('background-image','url(../static/images/selectedBg.png)')
@@ -44,17 +44,17 @@ function newest_moouse_out() {
 }
 function newest_click() {
     selected=1;
-
-    $(".hot").css('background-image','url(../static/images/blank.png)')
-    $(".tagged").css('background-image','url(../static/images/blank.png)')
+    dowm_slide();
+    var text="window.location.href=\"main.html?selected="+1+"\"";
+    var t=setTimeout(text,500);
 }
-function hot_moouse_over() {
+function hot_mouse_over() {
     if(2!=selected)
     {
         $(".hot").css('background-image','url(../static/images/buttonDown.png)')
     }
 }
-function hot_moouse_out() {
+function hot_mouse_out() {
     if(2==selected)
     {
         $(".hot").css('background-image','url(../static/images/selectedBg.png)')
@@ -66,16 +66,17 @@ function hot_moouse_out() {
 }
 function hot_click() {
     selected=2;
-    $(".newest").css('background-image','url(../static/images/blank.png)')
-    $(".tagged").css('background-image','url(../static/images/blank.png)')
+    dowm_slide();
+    var text="window.location.href=\"main.html?selected="+2+"\"";
+    var t=setTimeout(text,500);
 }
-function tagged_moouse_over() {
+function tagged_mouse_over() {
     if(3!=selected)
     {
         $(".tagged").css('background-image','url(../static/images/buttonDown.png)')
     }
 }
-function tagged_moouse_out() {
+function tagged_mouse_out() {
     if(3==selected)
     {
         $(".tagged").css('background-image','url(../static/images/selectedBg.png)')
@@ -87,9 +88,15 @@ function tagged_moouse_out() {
 }
 function tagged_click() {
     selected=3
-    $(".newest").css('background-image','url(../static/images/blank.png)')
-    $(".hot").css('background-image','url(../static/images/blank.png)')
+    dowm_slide();
+    var text="window.location.href=\"main.html?selected="+3+"\"";
+    var t=setTimeout(text,500);
 }
 function swen_news_click(){
     window.location.href="main.html"
+}
+function dowm_slide(){
+    $(".main_in_main").animate({
+        top:'+=1000px'
+    });
 }

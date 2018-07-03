@@ -1,6 +1,8 @@
 var selected=1;
 var tag_sel=-1;//-1 未选中，1时政，2科技，3娱乐，4游戏，5体育，6财经
 var create_flag=false;
+var page=0;
+var load_flag=false;
 $(document).ready(function(){
     var num=0;
     var angle=0;
@@ -28,6 +30,15 @@ $(document).ready(function(){
         offset: '25%'
     })
 });
+function load(load_flag) {
+    if(!load_flag)
+    {
+        $(".main_block").animate({
+            top:'-=1000px'
+        });
+        load_flag=true;
+    }
+}
 function main_block_click(newsid) {
     $(".main_block").animate({
         top:'+=2000px',
@@ -36,13 +47,13 @@ function main_block_click(newsid) {
     var t=setTimeout(text,500);
     // var t=setTimeout("window.location.href=\"detail.html\"",500);
 }
-function newest_moouse_over() {
+function newest_mouse_over() {
     if(1!=selected)
     {
         $(".newest").css('background-image','url(../static/images/buttonDown.png)')
     }
 }
-function newest_moouse_out() {
+function newest_mouse_out() {
     if(1==selected)
     {
         $(".newest").css('background-image','url(../static/images/selectedBg.png)')
@@ -58,13 +69,13 @@ function newest_click() {
     $(".hot").css('background-image','url(../static/images/blank.png)')
     $(".tagged").css('background-image','url(../static/images/blank.png)')
 }
-function hot_moouse_over() {
+function hot_mouse_over() {
     if(2!=selected)
     {
         $(".hot").css('background-image','url(../static/images/buttonDown.png)')
     }
 }
-function hot_moouse_out() {
+function hot_mouse_out() {
     if(2==selected)
     {
         $(".hot").css('background-image','url(../static/images/selectedBg.png)')
@@ -79,13 +90,13 @@ function hot_click() {
     $(".newest").css('background-image','url(../static/images/blank.png)')
     $(".tagged").css('background-image','url(../static/images/blank.png)')
 }
-function tagged_moouse_over() {
+function tagged_mouse_over() {
     if(3!=selected)
     {
         $(".tagged").css('background-image','url(../static/images/buttonDown.png)')
     }
 }
-function tagged_moouse_out() {
+function tagged_mouse_out() {
     if(3==selected)
     {
         $(".tagged").css('background-image','url(../static/images/selectedBg.png)')
@@ -220,4 +231,20 @@ function shelter_click() {
 }
 function swen_news_click(){
     window.location.href="main.html"
+}
+function last_page_click() {
+    page=page-1;
+    $(".main_block").animate({
+        top:'+=1000px'
+    });
+    var text="window.location.href=\"main.html?page="+page+"\"";
+    var t=setTimeout(text,500);
+}
+function next_page_click() {
+    page=page+1;
+    $(".main_block").animate({
+        top:'-=1000px'
+    });
+    var text="window.location.href=\"main.html?page="+page+"\"";
+    var t=setTimeout(text,500);
 }
