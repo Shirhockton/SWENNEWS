@@ -40,10 +40,15 @@
          </ul>-->
     </div>
     <div class="info_edit">
-        <div class="head_pic"></div>
-        <span class="user_name">用户名</span>
-        <span class="user_email">12345678@qq.com</span>
+        <div class="head_pic" ></div>
+        <image class="user_image" src="../static/images/user.png" id="user_image"></image>
+        <image class="edit_image" src="../static/images/edit_pic_button.png"></image>
         <span class="edit_title">编辑资料</span>
+        <input class="user_name" type="text"  placeholder="用户名" >
+        <input class="user_email" type="text"  placeholder="邮箱">
+
+        <input type="file" class="edit_pic_btn" onchange="previewHandle(this)">
+        <image src="../static/images/keep_data.png" class="keep_data_btn" onmousedown="keep_data()" ></image>
     </div>
     <div class="shelter_user_center"></div>
 </div>

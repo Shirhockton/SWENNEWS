@@ -77,3 +77,49 @@ function edit_info() {
         edit_flag=false;
     }
 }
+
+function keep_data() {
+
+    $(".shelter_user_center").css('display','none');
+    $(".info_edit").animate({
+        top:'-=1100px'
+    });
+    edit_flag=false;
+    var text="window.location.href=\"user_center.html\"";
+    var t=setTimeout(text,500);
+
+}
+
+function previewHandle(fileDOM) {
+    var file = fileDOM.files[0], // 获取文件
+        imageType = /^image\//,
+        reader = '';
+
+    // 文件是否为图片
+    if (!imageType.test(file.type)) {
+        alert("请选择图片！");
+        return;
+    }
+    // 判断是否支持FileReader
+    if (window.FileReader) {
+        reader = new FileReader();
+    }
+    // IE9及以下不支持FileReader
+    else {
+        alert("您的浏览器不支持图片预览功能，如需该功能请升级您的浏览器！");
+        return;
+    }
+
+    // 读取完成
+    reader.onload = function (event) {
+        // 获取图片DOM
+        var img = document.getElementById("user_image");
+        // 图片路径设置为读取的图片
+        var txt=event.target.result;
+
+        img.src = txt;
+
+    };
+    reader.readAsDataURL(file);
+}
+

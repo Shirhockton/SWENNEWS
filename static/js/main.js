@@ -106,10 +106,17 @@ function tagged_mouse_out() {
         $(".tagged").css('background-image','url(../static/images/blank.png)')
     }
 }
+function tags_move_out() {
+    if(3==selected)
+    {
+        $(".tags").slideToggle("fast");
+    }
+}
 function tagged_click() {
     selected=3
     $(".newest").css('background-image','url(../static/images/blank.png)')
     $(".hot").css('background-image','url(../static/images/blank.png)')
+    $(".tags").slideToggle("fast");
 }
 function create_news() {
     if(!create_flag)

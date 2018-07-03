@@ -101,6 +101,8 @@ div.panel{
     width:213px;
     height: 213px;
     border:1px dotted black;
+    border-radius: 6px;
+    border: solid 5px #efefef;
 }
 .name_user{
     position: absolute;
@@ -226,13 +228,27 @@ div.panel{
 }
 
 .head_pic{
+    /*background-size: 141px 141px;*/
+    /*background-repeat: no-repeat;*/
     width: 134px;
     height:134px;
     border:1px dotted black;
     margin-left: 170px;
     margin-top: 182px;
+    border-radius: 6px;
+    border: solid 5px #efefef;
 }
+.user_image{
 
+    position: absolute;
+    /*background-image: url("../images/user.png");*/
+    /*background-size: 134px 134px;*/
+    /*background-repeat: no-repeat;*/
+    width: 134px;
+    height:134px;
+    margin-left: 175px;
+    margin-top: -139px;
+}
 .edit_title{
     position:absolute;
     width:150px;
@@ -246,10 +262,11 @@ div.panel{
 
 .user_name{
     position:absolute;
+    border:none;
     width: 145px;
-    height: 35px;
+    height: 25px;
     font-family: SourceHanSansCN-Medium;
-    font-size: 34px;
+    font-size: 22px;
     font-weight: normal;
     font-stretch: normal;
     line-height: 28px;
@@ -261,10 +278,11 @@ div.panel{
 
 .user_email {
     position: absolute;
+    border:none;
     width: 230px;
-    height: 26px;
+    height: 20px;
     font-family: SourceHanSansCN-Light;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: normal;
     font-stretch: normal;
     line-height: 28px;
@@ -273,6 +291,7 @@ div.panel{
     margin-left: 370px;
     margin-top: -25px;
 }
+
 
 .shelter_user_center{
     background-color: #454545;
@@ -284,4 +303,50 @@ div.panel{
     position: fixed;
     top: 0px;
     left: 0px;
+}
+
+.edit_info_btn{
+    position:absolute;
+    margin-left: 530px;
+    margin-top: -60px;
+}
+.edit_pic_btn{
+   /* background-image: url("../images/user.png");*/
+   /* background-size: ;*/
+    position: absolute;
+    /*width: 95px;
+    height: 63px;*/
+    margin-left:197px;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+.keep_data_btn{
+    position:absolute;
+    margin-left: 260px;
+    margin-top: 45px;
+    width: 252px;
+    height: 44px;
+    background-color: #ff6f79;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.edit_pic_btn{
+    z-index: 889;
+    position:absolute;
+    width: 134px;
+    height:134px;
+    margin-left: 175px;
+    margin-top: -139px;
+    opacity: 0;
+    /*background: url("../images/lgbg.png");*/
+}
+
+.edit_image{
+    position:absolute;
+    width: 95px;
+    height:63px;
+    margin-left: 195px;
+    margin-top: -105px;
+    z-index: 888;
 }
