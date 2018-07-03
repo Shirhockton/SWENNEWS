@@ -2,6 +2,7 @@ var selected=1;
 $(document).ready(function(){
     var slide_flag=false;
     var load_flag=false;
+    var id=getParams("id");
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
         if(!slide_flag)
@@ -100,3 +101,11 @@ function dowm_slide(){
         top:'+=1000px'
     });
 }
+function getParams(key) {
+    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+};

@@ -248,3 +248,11 @@ function next_page_click() {
     var text="window.location.href=\"main.html?page="+page+"\"";
     var t=setTimeout(text,500);
 }
+function getParams(key) {
+    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+};
