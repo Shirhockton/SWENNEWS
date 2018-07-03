@@ -1,31 +1,28 @@
 
 
-
-// function preCheck() {
-//     var username = $("#loginName").val();
-//     var password = $("#password").val();
-//     var email = $("#email").val();
-//     var pwdAgain = $("#passwordAgain").val();
-//     $("#loginName").blur(function () {
-//             checkUsername(username);
-//     })
-//     $("#password").blur(function () {
-//             checkPwd(password);
-//     })
-//     $("#email").blur(function () {
-//       checkEmail(email);
-//     })
-//     $("#passwordAgain").blur(function () {
-//         checkPwdAgain(pwdAgain,password);
-//     })
-// }
-
 function checkUsername(us){
     if(us.length>6&&us.length<16){
 
         return true;
     }
-    $("#judgeUr").append("US");
+    iziToast.show({
+        class: 'test',
+        color: '#ffffff',
+        icon: 'icon-contacts',
+        title: '用户名长度应为6到16',
+        message: '请重试',
+        position: 'topCenter',
+        transitionIn: 'flipInX',
+        transitionOut: 'flipOutX',
+        progressBarColor: 'rgb(0, 255, 184)',
+        image: '../static/images/error_cat.gif',
+        imageWidth: 70,
+        layout:2,
+        onClose: function(){
+            console.info('onClose');
+        },
+        iconColor: 'rgb(0, 255, 184)'
+    });
     return false;
 }
 
@@ -34,7 +31,24 @@ function checkPwd(password){
 
         return true;
     }
-    $("#judgeUr").append("PWD");
+    iziToast.show({
+        class: 'test',
+        color: '#ffffff',
+        icon: 'icon-contacts',
+        title: '密码长度应为6到16',
+        message: '请重试',
+        position: 'topCenter',
+        transitionIn: 'flipInX',
+        transitionOut: 'flipOutX',
+        progressBarColor: 'rgb(0, 255, 184)',
+        image: '../static/images/error_cat.gif',
+        imageWidth: 70,
+        layout:2,
+        onClose: function(){
+            console.info('onClose');
+        },
+        iconColor: 'rgb(0, 255, 184)'
+    });
 
     return false;
 }
@@ -46,7 +60,24 @@ function  checkEmail(email){
         if (isok) {
             return true;
         } else {
-            $("#judgeUr").append("email");
+            iziToast.show({
+                class: 'test',
+                color: '#ffffff',
+                icon: 'icon-contacts',
+                title: '邮箱格式错误',
+                message: '请重试',
+                position: 'topCenter',
+                transitionIn: 'flipInX',
+                transitionOut: 'flipOutX',
+                progressBarColor: 'rgb(0, 255, 184)',
+                image: '../static/images/error_dog.gif',
+                imageWidth: 70,
+                layout:2,
+                onClose: function(){
+                    console.info('onClose');
+                },
+                iconColor: 'rgb(0, 255, 184)'
+            });
             return false;
         }
     };
@@ -56,8 +87,25 @@ function checkPwdAgain(pwdAgain,password){
     if(pwdAgain.eq(password)){
         return true;
     }
-    $("#judgeUr").append("PWDA");
-    return false;
+    iziToast.show({
+        class: 'test',
+        color: '#ffffff',
+        icon: 'icon-contacts',
+        title: '两次密码不一致',
+        message: '请重试',
+        position: 'topCenter',
+        transitionIn: 'flipInX',
+        transitionOut: 'flipOutX',
+    progressBarColor: 'rgb(0, 255, 184)',
+        image: '../static/images/error_dog.gif',
+        imageWidth: 70,
+        layout:2,
+        onClose: function(){
+        console.info('onClose');
+    },
+    iconColor: 'rgb(0, 255, 184)'
+});
+return false;
 }
 
 function register(){
