@@ -8,7 +8,6 @@ $(document).ready(function(){
     var angle=0;
     var slide_flag=false;
     var tag_slide_flag=false;
-    //selected=getParams("seleceted");
     createNews();
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
@@ -30,7 +29,6 @@ $(document).ready(function(){
     }, {
         offset: '25%'
     })
-    alert(selected);
 });
 function load(load_flag) {
     if(!load_flag)
@@ -281,3 +279,6 @@ function getParams(key) {
     }
     return null;
 };
+function tags_t_1_click() {
+    $("#tags_t_1").css('color','#ff6f79');
+}
