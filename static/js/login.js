@@ -1,13 +1,25 @@
 function signIn(){
     var loginName = $("#loginName"),password = $("#Password");
     var loginName = loginName.val(),password = password.val();
-    $.post("url",{
-            username:loginName,
-            password:password
-        },
-        function(data,status){
-            alert("数据: \n" + data + "\n状态: " + status);
-        });
+    $.ajax({
+        url: '/SwenNews/api/v1/session',
+        type: 'POST',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({"username": loginName, "password": password}),
+    })
+        .done(function(data) {
+            if (!data.result) {
+                alert("成功登陆");
+                window.location.href="main.html"
+            } else {
+                alert("密码或用户名错误")
+            }
+        })
+        .fail(function() {
+            console.log("error")
+        })
+
 }
 
 // 错误信息提醒
@@ -26,8 +38,6 @@ $(function(){
         return true;
     }
 });
-
-
-
-
-
+function jump(url) {
+    window.location.href=url;
+}

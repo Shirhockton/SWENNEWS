@@ -47,14 +47,23 @@ function register(){
     var pwdAgain = $("#passwordAgain").val();
     var isRight= checkUsername(username)&&checkEmail(email)&&checkPwd(password)&&checkPwdAgain(pwdAgain);
     if(isRight) {
-        $.post("url", {
-                username: username,
-                email: email,
-                password: password,
-            },
-            function (data, status) {
-                alert("数据: \n" + data + "\n状态: " + status);
-            });
+        $.ajax({
+            url: '/SwenNews/api/v1/user',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({"username": username,"mail":email, "password": password}),
+        })
+            .done(function(data) {
+                if (!data.result) {
+                    alert("注册成功")
+                } else {
+                    alert("注册失败")
+                }
+            })
+            .fail(function() {
+                console.log("error")
+            })
         // }
     }
 }
@@ -86,3 +95,12 @@ function toastError(title,message) {
 //         preCheck();
 //     }
 // })
+function confirm(index){
+    if(1==index)
+    {
+        window.location.href="tips.html"
+    }
+    else{
+        alert("注册失败！");
+    }
+}

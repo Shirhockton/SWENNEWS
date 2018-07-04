@@ -1,8 +1,9 @@
 var selected=1;
+var id=-1;
 $(document).ready(function(){
     var slide_flag=false;
     var load_flag=false;
-    var id=getParams("id");
+    id=getParams("id");
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
         if(!slide_flag)
@@ -18,10 +19,35 @@ $(document).ready(function(){
     t=setTimeout(load(load_flag),5000)
 
 });
-function load(load_flag) {
+function getNews(load_flag) {
+
+    $.ajax({
+        url: '/SwenNews/api/v1/news/<'+id+'>',
+        type: 'GET',
+        dataType: 'json'
+    })
+    .done(function(data) {
+            console.log(data.id);
+            load(load_flag,data.news_type,data.title,data.content,data.username,data.datetime);
+        })
+        .fail(function() {
+            console.log("error")
+        })
+}
+function load(load_flag,news_type,title,content,username,datetime) {
     if(!load_flag)
     {
-        $(".main_in_main").animate({
+        $(".main_in_main").append(
+            "<ul><li>"+
+            "<span class='news_type'>来自话题："+news_type+"</span><li>" +
+            "<li><span class='news_title'>"+title+"</span><li>" +
+            "<li><span class='news_content'>"+content+"</span><li>"+
+            "<span class='head_icon'></span>"+
+            "<span class='date_time_pic'></span>"+
+            "<li><span class='user_name'>"+username+"</span></li>"+
+            "<li><span class='date_time'>"+datetime+"<li>"+
+            "</ul>"
+        ).animate({
             top:'-=500px'
         });
         load_flag=true;
