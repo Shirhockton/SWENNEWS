@@ -1,0 +1,178 @@
+PS:: 若status为0，则返回有error_msg字段
+
+#about login
+
+//获取当前登录用户信息（用户id，用户名，邮箱）
+GET /SwenNews/api/v1/session
+return
+{
+    status: 1/0         //操作结果
+    id:           //当前用户
+    username:
+    mail:
+    avatar:       //当前用户头像url
+}
+
+//用户登录
+POST /SwenNews/api/v1/session
+{
+    username:
+    password:
+}
+return
+{
+    status: 1/0         //操作结果
+}
+
+//用户登出
+DELETE /SwenNews/api/v1/session
+{
+    user_id：
+}
+return
+{
+    status:
+}
+
+
+#about register
+GET /SwenNews/api/v1/user?username=      // username为用户名或邮箱
+return
+{
+    status: 1/0         //操作结果
+    exist:           //用户是否已经存在
+}
+
+//用户注册
+POST /SwenNews/api/v1/user
+{
+    username:
+    mail:
+    password:
+}
+return
+{
+    status: 1/0         //操作结果
+}
+
+#about user
+修改用户信息（用户名）
+PUT /SwenNews/api/v1/user
+{
+    username:         //若不需要修改则不加该字段
+}
+return 
+{
+    status:
+}
+
+修改用户信息（密码）   ps：需显示调用发送认证邮件
+PUT /SwenNews/api/v1/user/password
+{
+    password:
+    auth_code:        
+}
+return 
+{
+    status:
+}
+
+修改用户信息（头像）
+PUT /SwenNews/api/v1/user/avatar
+return 
+{
+    status:
+}
+
+
+//发送认证邮件    type='confirm'为注册时认证，此时无需调用    type='auth_code' 为修改密码时调用，此时需要显示调用
+GET /SwenNews/api/v1/mail?type=
+return
+{
+    status:
+}
+
+
+#about backend
+GET /SwenNews/backend/news     //获取所有未check的news
+return
+{
+    1 : {
+        id:
+        title:
+        content:
+        username:
+        datetime:
+    }
+    2 : {
+
+    }
+}
+
+GET /SwenNews/backend/auth     //检测登录用户是否为管理员用户
+return
+{
+    status:     //用户名暂定为admin
+}
+
+PUT /SwenNews/backend/news      //check 一个新闻
+{
+    id:
+    checked: 0/1
+}
+return
+{
+    status:0/1
+}
+
+#about news
+GET /SwenNews/api/v1/news?new_type= & time= & hot=    //返回新闻  规定 type 或者 'all'; time:0表示无限制,1表示最新; hot:0表示无限制，1表示最热
+return
+{
+    1 : {
+        id:
+        title:
+        news_type:
+        username:
+        datetime:
+    }
+    2 : {
+
+    }
+}
+
+GET /SwenNews/api/v1/news/<id>   //返回一个新闻   //id为可变参数
+return
+{
+    id:
+    title:
+    content:
+    news_type:
+    username:
+    datetime:
+}
+
+POST /SwenNews/api/v1/news/news         //创建一个新闻
+{
+    title：
+    content：
+    news_type：                 //后台记得添加datetime与当前userid
+}
+return
+{
+    status：
+}
+
+GET /SwenNews/api/v1/news/list       //返回用户创建的所有新闻
+return
+{
+    1 : {
+        id:
+        title:
+        news_type:
+        datetime:
+    }
+    2 : {
+
+    }
+}
