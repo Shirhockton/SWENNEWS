@@ -20,6 +20,7 @@ $(document).ready(function(){
     if(selected==null){
         selected = 1;
     }
+    set_sel();
     switch (selected){
         case 1:getNewestNews(page);
             break;
@@ -48,6 +49,24 @@ $(document).ready(function(){
         offset: '25%'
     })
 });
+function set_sel() {
+    if(1==selected){
+        $(".newest").css('background-image','url(../static/images/selectedBg.png)')
+        $(".hot").css('background-image','url(../static/images/blank.png)')
+        $(".tagged").css('background-image','url(../static/images/blank.png)')
+    }
+    else if(2==selected){
+        $(".hot").css('background-image','url(../static/images/selectedBg.png)')
+        $(".newest").css('background-image','url(../static/images/blank.png)')
+        $(".tagged").css('background-image','url(../static/images/blank.png)')
+    }
+    else{
+        $(".tagged").css('background-image','url(../static/images/selectedBg.png)')
+        $(".hot").css('background-image','url(../static/images/blank.png)')
+        $(".newest").css('background-image','url(../static/images/blank.png)')
+        $(".tags").slide();
+    }
+}
 function load(load_flag) {
     if(!load_flag)
     {
@@ -84,7 +103,7 @@ function newest_mouse_out() {
 function newest_click() {
     selected=1;
     page=0;
-    var text="window.location.href=\"main.html?selected="+selected+"\"";
+    var text="window.location.href=\"main.html?page="+0+"&selected="+selected+"\"";
     var t=setTimeout(text,0);
     $(".hot").css('background-image','url(../static/images/blank.png)')
     $(".tagged").css('background-image','url(../static/images/blank.png)')
@@ -108,7 +127,7 @@ function hot_mouse_out() {
 function hot_click() {
     selected=2;
     page=0;
-    var text="window.location.href=\"main.html?selected="+selected+"\"";
+    var text="window.location.href=\"main.html?page="+0+"&selected="+selected+"\"";
     var t=setTimeout(text,0);
     $(".newest").css('background-image','url(../static/images/blank.png)')
     $(".tagged").css('background-image','url(../static/images/blank.png)')
@@ -138,7 +157,7 @@ function tags_move_out() {
 function tagged_click() {
     selected=3
     page=0;
-    var text="window.location.href=\"main.html?selected="+selected+"\"";
+    var text="window.location.href=\"main.html?page="+0+"&selected="+selected+"\"";
     var t=setTimeout(text,0);
     $(".newest").css('background-image','url(../static/images/blank.png)')
     $(".hot").css('background-image','url(../static/images/blank.png)')
@@ -357,7 +376,8 @@ function create_confirm() {
     $(".create_news").animate({
         top:'-=1013px'
     });
-    var t=setTimeout("window.location.href=\"main.html\"",500);
+    var text="window.location.href=\"main.html?page="+0+"&selected="+selected+"\"";
+    var t=setTimeout(text,500);
 }
 
 
@@ -396,7 +416,7 @@ function swen_news_click(){
         $(".main_block").animate({
             top:'+=1000px'
         });
-        var text="window.location.href=\"main.html?page="+page+"\"";
+        var text="window.location.href=\"main.html?page="+page+"&selected="+selected+"\"";
         var t=setTimeout(text,500);
     }
 
@@ -406,7 +426,7 @@ function next_page_click() {
     $(".main_block").animate({
         top:'-=1000px'
     });
-    var text="window.location.href=\"main.html?page="+page+"\"";
+    var text="window.location.href=\"main.html?page="+page+"&selected="+selected+"\"";
     var t=setTimeout(text,500);
 }
 

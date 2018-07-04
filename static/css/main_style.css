@@ -42,7 +42,6 @@ ul li{
     cursor: pointer;
 }
 .newest{
-    background: url("../images/selectedBg.png");
     background-repeat: no-repeat;
     background-position: bottom;
     width: 112px;

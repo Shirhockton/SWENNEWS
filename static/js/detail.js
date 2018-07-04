@@ -16,7 +16,7 @@ $(document).ready(function(){
             slide_flag=false;
         }
     });
-    t=setTimeout(load(load_flag),5000)
+    t=setTimeout(getNews(load_flag),500)
 
 });
 function getNews(load_flag) {
@@ -48,7 +48,7 @@ function load(load_flag,news_type,title,content,username,datetime) {
             "<li><span class='date_time'>"+datetime+"<li>"+
             "</ul>"
         ).animate({
-            top:'-=500px'
+            top:'-=600px'
         });
         load_flag=true;
     }
