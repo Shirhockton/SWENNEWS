@@ -1,7 +1,7 @@
 
 
 function checkUsername(us){
-    if(us.length>6&&us.length<16){
+    if(us.length>5&&us.length<16){
 
         return true;
     }
@@ -10,7 +10,7 @@ function checkUsername(us){
 }
 
 function checkPwd(password){
-    if(password.length>6&&password.length<16){
+    if(password.length>5&&password.length<16){
 
         return true;
     }
@@ -32,18 +32,36 @@ function  checkEmail(email){
 }
 
 function checkPwdAgain(pwdAgain,password){
-    if(pwdAgain.eq(password)){
+    if(pwdAgain==password){
         return true;
     }
     toastError("两次密码不一致","请重试");
 
 return false;
 }
-
+function check_if_exist(username,email) {
+    $.ajax({
+        url: '/SwenNews/api/v1/user?username='+username+'&mail='+email,
+        type: 'GET',
+        dataType: 'json',
+    })
+        .done(function(data) {
+            if(1==data.status)
+            {
+                if(data.exist){
+                    alert("exist!");
+                }
+            }
+        })
+        .fail(function() {
+            console.log("get user information error")
+        })
+}
 function register(){
     var username = $("#loginName").val();
     var password = $("#password").val();
     var email = $("#email").val();
+    check_if_exist(username,email);
     var pwdAgain = $("#passwordAgain").val();
     var isRight= checkUsername(username)&&checkEmail(email)&&checkPwd(password)&&checkPwdAgain(pwdAgain);
     if(isRight) {
@@ -57,6 +75,7 @@ function register(){
             .done(function(data) {
                 if (!data.result) {
                     alert("注册成功")
+                    window.location.href="tips.html";
                 } else {
                     alert("注册失败")
                 }

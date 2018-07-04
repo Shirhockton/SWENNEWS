@@ -36,7 +36,7 @@ return
 
 
 #about register
-GET /SwenNews/api/v1/user?username=      // username为用户名或邮箱
+GET /SwenNews/api/v1/user?username=&mail=     // username为用户名或邮箱
 return
 {
     status: 1/0         //操作结果
