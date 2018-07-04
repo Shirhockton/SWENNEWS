@@ -64,7 +64,7 @@ function set_sel() {
         $(".tagged").css('background-image','url(../static/images/selectedBg.png)')
         $(".hot").css('background-image','url(../static/images/blank.png)')
         $(".newest").css('background-image','url(../static/images/blank.png)')
-        $(".tags").slide();
+        $(".tags").slideToggle("fast");
     }
 }
 function load(load_flag) {
@@ -155,12 +155,14 @@ function tags_move_out() {
     }
 }
 function tagged_click() {
-    selected=3
-    page=0;
-    var text="window.location.href=\"main.html?page="+0+"&selected="+selected+"\"";
-    var t=setTimeout(text,0);
-    $(".newest").css('background-image','url(../static/images/blank.png)')
-    $(".hot").css('background-image','url(../static/images/blank.png)')
+    if(3!=selected){
+        selected=3
+        page=0;
+        var text="window.location.href=\"main.html?page="+0+"&selected="+selected+"\"";
+        var t=setTimeout(text,0);
+        $(".newest").css('background-image','url(../static/images/blank.png)')
+        $(".hot").css('background-image','url(../static/images/blank.png)')
+    }
     $(".tags").slideToggle("fast");
 }
 function create_news() {
