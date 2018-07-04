@@ -3,11 +3,14 @@ var tag_sel;//-1 未选中，1时政，2科技，3娱乐，4游戏，5体育，6
 var create_flag=false;
 var page=0;
 var load_flag=false;
+var login_flag=false;
+var user_id=-1;
 $(document).ready(function(){
     var num=0;
     var angle=0;
     var slide_flag=false;
     var tag_slide_flag=false;
+    get_user_info();
     page=getParams("page");
     if(page==null){
         page=0;
@@ -26,14 +29,19 @@ $(document).ready(function(){
 
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
-        if(!slide_flag)
-        {
-            $(".panel").slideDown("fast");
-            slide_flag=true;
+        if(login_flag){
+            if(!slide_flag)
+            {
+                $(".panel").slideDown("fast");
+                slide_flag=true;
+            }
+            else{
+                $(".panel").slideUp("fast");
+                slide_flag=false;
+            }
         }
         else{
-            $(".panel").slideUp("fast");
-            slide_flag=false;
+            window.location.href="login.html"
         }
     });
     $(".three_points").click(function(){
@@ -45,6 +53,41 @@ $(document).ready(function(){
         offset: '25%'
     })
 });
+function get_user_info() {
+    $.ajax({
+        url: '/SwenNews/api/v1/session',
+        type: 'GET',
+        dataType: 'json'
+    })
+        .done(function(data) {
+            if(1==data.status)
+            {
+                login_flag=true;
+                user_id=data.id;
+            }
+        })
+        .fail(function() {
+            console.log("get user information error")
+        })
+}
+function logout() {
+    $.ajax({
+        url: '/SwenNews/api/v1/session',
+        type: 'DELETE',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({"user_id": user_id}),
+    })
+        .done(function(data) {
+            if(1==data.status)
+            {
+                login_flag=false;
+            }
+        })
+        .fail(function() {
+            console.log("log out error")
+        })
+}
 function set_sel() {
     if(1==selected){
         $(".newest").css('background-image','url(../static/images/selectedBg.png)')

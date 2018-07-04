@@ -4,21 +4,63 @@ $(document).ready(function(){
     var slide_flag=false;
     var load_flag=false;
     id=getParams("id");
+    get_user_info();
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
-        if(!slide_flag)
-        {
-            $(".panel").slideDown("fast");
-            slide_flag=true;
+        if(login_flag){
+            if(!slide_flag)
+            {
+                $(".panel").slideDown("fast");
+                slide_flag=true;
+            }
+            else{
+                $(".panel").slideUp("fast");
+                slide_flag=false;
+            }
         }
         else{
-            $(".panel").slideUp("fast");
-            slide_flag=false;
+            window.location.href="login.html"
         }
     });
     t=setTimeout(getNews(load_flag),500)
 
 });
+
+function get_user_info() {
+    $.ajax({
+        url: '/SwenNews/api/v1/session',
+        type: 'GET',
+        dataType: 'json'
+    })
+        .done(function(data) {
+            if(1==data.status)
+            {
+                login_flag=true;
+                user_id=data.id;
+            }
+        })
+        .fail(function() {
+            console.log("get user information error")
+        })
+}
+function logout() {
+    $.ajax({
+        url: '/SwenNews/api/v1/session',
+        type: 'DELETE',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({"user_id": user_id}),
+    })
+        .done(function(data) {
+            if(1==data.status)
+            {
+                login_flag=false;
+            }
+        })
+        .fail(function() {
+            console.log("log out error")
+        })
+}
 function getNews(load_flag) {
 
     $.ajax({
