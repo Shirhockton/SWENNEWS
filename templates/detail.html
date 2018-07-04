@@ -19,11 +19,21 @@
         <img src="../static/images/user.png" class="user">
         <div class="panel" >
             <ul>
-                <li><span class="me">用户中心</span> </li>
-                <li><span class="my_news">我的新闻</span> </li>
+                <li><span class="me" onclick="user_center_click()">用户中心</span> </li>
+                <li><span class="my_news" onclick="my_news_click()">我的新闻</span> </li>
                 <li><span class="exit">退出登录</span> </li>
             </ul>
         </div>
+    </div>
+    <div class="tags" >
+        <ul class="tag_ul">
+            <li class="tag_li"><span class="tags_t" id="tags_t_1" onmousedown="tags_t_1_click()" onmouseover="tags_t_1_over()" onmouseout="tags_t_1_out()">时政</span></li>
+            <li class="tag_li"><span class="tags_t" id="tags_t_2" onmousedown="tags_t_2_click()" onmouseover="tags_t_2_over()" onmouseout="tags_t_2_out()">科技</span></li>
+            <li class="tag_li"><span class="tags_t" id="tags_t_3" onmousedown="tags_t_3_click()" onmouseover="tags_t_3_over()" onmouseout="tags_t_3_out()">娱乐</span></li>
+            <li class="tag_li"><span class="tags_t" id="tags_t_4" onmousedown="tags_t_4_click()" onmouseover="tags_t_4_over()" onmouseout="tags_t_4_out()">游戏</span></li>
+            <li class="tag_li"><span class="tags_t" id="tags_t_5" onmousedown="tags_t_5_click()" onmouseover="tags_t_5_over()" onmouseout="tags_t_5_out()">体育</span></li>
+            <li class="tag_li"><span class="tags_t" id="tags_t_6" onmousedown="tags_t_6_click()" onmouseover="tags_t_6_over()" onmouseout="tags_t_6_out()">财经</span></li>
+        </ul>
     </div>
     <div class="main_in_main" >
          <!--<img class="main_block" id="main_block_1" src="../static/images/newsbg.png">-->

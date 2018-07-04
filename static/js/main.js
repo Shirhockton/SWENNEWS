@@ -12,10 +12,6 @@ $(document).ready(function(){
     if(page==null){
         page=0;
     }
-    tag_sel=getParams("tag_sel");
-    if(null==tag_sel){
-        tag_sel=1;
-    }
     selected=getParams("selected");
     if(selected==null){
         selected = 1;
@@ -64,7 +60,31 @@ function set_sel() {
         $(".tagged").css('background-image','url(../static/images/selectedBg.png)')
         $(".hot").css('background-image','url(../static/images/blank.png)')
         $(".newest").css('background-image','url(../static/images/blank.png)')
-        $(".tags").slideToggle("fast");
+        tag_sel=getParams("tag_sel");
+        if(null==tag_sel){
+            tag_sel=1;
+            document.getElementById("tags_t_1").style.color="#ff6f79";
+            $(".tags").slideToggle("fast");
+        }
+        if(1==tag_sel)
+        {
+            getTypeNews(page,'时政');
+        }
+        else if(2==tag_sel){
+            getTypeNews(page,'科技');
+        }
+        else if(3==tag_sel){
+            getTypeNews(page,'娱乐');
+        }
+        else if(4==tag_sel){
+            getTypeNews(page,'游戏');
+        }
+        else if(5==tag_sel){
+            getTypeNews(page,'体育');
+        }
+        else{
+            getTypeNews(page,'财经');
+        }
     }
 }
 function load(load_flag) {
@@ -220,36 +240,60 @@ function three_points() {
 }
 function tags_t_1_click() {
     page=0;
+    tag_sel=1;
+    $(".tags").slideToggle("fast");
+    var text="window.location.href=\"main.html?page="+0+"&selected="+3+"&tag_sel="+1+"\"";
+    var t=setTimeout(text,500);
     $(".tags_t").css('color','#474747');
     document.getElementById("tags_t_1").style.color="#ff6f79";
     tag_sel=1;
 }
 function tags_t_2_click() {
     page=0;
+    tag_sel=2;
+    $(".tags").slideToggle("fast");
+    var text="window.location.href=\"main.html?page="+0+"&selected="+3+"&tag_sel="+2+"\"";
+    var t=setTimeout(text,500);
     $(".tags_t").css('color','#474747');
     document.getElementById("tags_t_2").style.color="#ff6f79";
     tag_sel=2;
 }
 function tags_t_3_click() {
     page=0;
+    tag_sel=3;
+    $(".tags").slideToggle("fast");
+    var text="window.location.href=\"main.html?page="+0+"&selected="+3+"&tag_sel="+3+"\"";
+    var t=setTimeout(text,500);
     $(".tags_t").css('color','#474747');
     document.getElementById("tags_t_3").style.color="#ff6f79";
     tag_sel=3;
 }
 function tags_t_4_click() {
     page=0;
+    tag_sel=4;
+    $(".tags").slideToggle("fast");
+    var text="window.location.href=\"main.html?page="+0+"&selected="+3+"&tag_sel="+4+"\"";
+    var t=setTimeout(text,500);
     $(".tags_t").css('color','#474747');
     document.getElementById("tags_t_4").style.color="#ff6f79";
     tag_sel=4;
 }
 function tags_t_5_click() {
     page=0;
+    tag_sel=5;
+    $(".tags").slideToggle("fast");
+    var text="window.location.href=\"main.html?page="+0+"&selected="+3+"&tag_sel="+5+"\"";
+    var t=setTimeout(text,500);
     $(".tags_t").css('color','#474747');
     document.getElementById("tags_t_5").style.color="#ff6f79";
     tag_sel=5;
 }
 function tags_t_6_click() {
     page=0;
+    tag_sel=6;
+    $(".tags").slideToggle("fast");
+    var text="window.location.href=\"main.html?page="+0+"&selected="+3+"&tag_sel="+6+"\"";
+    var t=setTimeout(text,500);
     $(".tags_t").css('color','#474747');
     document.getElementById("tags_t_6").style.color="#ff6f79";
     tag_sel=6;
@@ -418,7 +462,7 @@ function swen_news_click(){
         $(".main_block").animate({
             top:'+=1000px'
         });
-        var text="window.location.href=\"main.html?page="+page+"&selected="+selected+"\"";
+        var text="window.location.href=\"main.html?page="+page+"&selected="+selected+"&tag_sel="+tag_sel+"\"";
         var t=setTimeout(text,500);
     }
 
@@ -428,7 +472,7 @@ function next_page_click() {
     $(".main_block").animate({
         top:'-=1000px'
     });
-    var text="window.location.href=\"main.html?page="+page+"&selected="+selected+"\"";
+    var text="window.location.href=\"main.html?page="+page+"&selected="+selected+"&tag_sel="+tag_sel+"\"";
     var t=setTimeout(text,500);
 }
 
