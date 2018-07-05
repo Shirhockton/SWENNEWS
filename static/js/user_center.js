@@ -2,6 +2,7 @@ var selected = 1
 var edit_flag=false;
 $(document).ready(function(){
     var slide_flag=false;
+    get_user_info();
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
         if(!slide_flag)

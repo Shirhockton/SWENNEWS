@@ -106,6 +106,8 @@ ul li{
     width: 1201px;
     height: 900px;
     background: #ffffff;
+    box-shadow: 0px 3px 5px 0px
+    rgba(0, 0, 0, 0.1);
     /*background: url("../images/newsbg.png");*/
 }
 div.panel{
@@ -187,45 +189,45 @@ div.panel{
     letter-spacing: 0px;
     color: #000000;
 }
-.head_icon{
-    position: absolute;
-    margin-top:300px ;
-    margin-left: 28px;
-    width: 100px;
-    height: 18px;
-    font-family: SourceHanSansCN-Normal;
-    font-size: 18px;
-    font-weight: normal;
-    font-stretch: normal;
-    line-height: 36px;
-    letter-spacing: 0px;
-    color: #878787;
-}
-.date_time_pic{
-    position:absolute;
-    margin-left: 134px;
-    margin-top: 300px;
-    width: 100px;
-    height: 18px;
-    font-family: SourceHanSansCN-Normal;
-    font-size: 18px;
-    font-weight: normal;
-    font-stretch: normal;
-    line-height: 36px;
-    letter-spacing: 0px;
-    color: #878787;
-}
 .user_name{
-    margin-left: 0px;
-    margin-top: 310px;
     position: absolute;
-    background: url("../images/head_icon.png");
-    width: 15px;
-    height: 15px;
+    margin-top:27px ;
+    margin-left: 150px;
+    width: 120px;
+    height: 18px;
+    font-family: SourceHanSansCN-Normal;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 36px;
+    letter-spacing: 0px;
+    color: #878787;
 }
 .date_time{
-    margin-left: 105px;
-    margin-top: 309px;
+    position:absolute;
+    margin-left: 20px;
+    margin-top: 29px;
+    width: 200px;
+    height: 18px;
+    font-family: SourceHanSansCN-Normal;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 36px;
+    letter-spacing: 0px;
+    color: #878787;
+}
+.head_icon{
+    margin-left: 130px;
+    margin-top: 35px;
+    position: absolute;
+    background: url("../images/head_icon.png");
+    width: 17px;
+    height: 17px;
+}
+.date_time_pic{
+    margin-left: 0px;
+    margin-top: 37px;
     position: absolute;
     width: 18px;
     height: 18px;

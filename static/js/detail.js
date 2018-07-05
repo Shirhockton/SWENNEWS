@@ -1,5 +1,6 @@
 var selected=1;
 var id=-1;
+var login_flag=false;
 $(document).ready(function(){
     var slide_flag=false;
     var load_flag=false;
@@ -23,7 +24,7 @@ $(document).ready(function(){
         }
     });
     t=setTimeout(getNews(load_flag),500)
-
+    // t=setTimeout(load_(load_flag),500)
 });
 
 function get_user_info() {
@@ -81,19 +82,38 @@ function load(load_flag,news_type,title,content,username,datetime) {
     {
         $(".main_in_main").append(
             "<ul><li>"+
-            "<span class='news_type'>来自话题："+news_type+"</span><li>" +
-            "<li><span class='news_title'>"+title+"</span><li>" +
-            "<li><span class='news_content'>"+content+"</span><li>"+
+            "<span class='news_type'>来自话题："+news_type+"</span>" +
             "<span class='head_icon'></span>"+
             "<span class='date_time_pic'></span>"+
-            "<li><span class='user_name'>"+username+"</span></li>"+
-            "<li><span class='date_time'>"+datetime+"<li>"+
+            "<span class='user_name'>"+username+"</span>"+
+            "<span class='date_time'>"+datetime+"</span>"+
+            "<li><span class='news_title'>"+title+"</span><li>" +
+            "<li><span class='news_content'>"+content+"</span><li>"+
             "</ul>"
-        ).animate({
+        )
+            .animate({
             top:'-=600px'
         });
         load_flag=true;
     }
+}
+function load_(load_flag) {
+    if(!load_flag)
+    {
+        $(".main_in_main")
+            .animate({
+                top:'-=600px'
+            });
+        load_flag=true;
+    }
+    var count=$(".news_content").text().length
+    var height=137+37*(count/40);
+    $(".date_time_pic").css('margin-top',height+27);
+    $(".head_icon").css('margin-top',height+27);
+    $(".date_time").css('margin-top',height+19);
+    $(".user_name").css('margin-top',height+17);
+    $(".main_in_main").css('height',height+70);
+    $(".main").css('height',height+240);
 }
 function newest_mouse_over() {
     if(1!=selected)

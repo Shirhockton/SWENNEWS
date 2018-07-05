@@ -416,7 +416,7 @@ input::-webkit-input-placeholder{
 }
 .news_block_date{
     position:absolute;
-    margin-left: 134px;
+    margin-left: 184px;
     margin-top: 300px;
     width: 100px;
     height: 18px;
@@ -433,11 +433,11 @@ input::-webkit-input-placeholder{
     margin-top: 310px;
     position: absolute;
     background: url("../images/head_icon.png");
-    width: 15px;
-    height: 15px;
+    width: 17px;
+    height: 17px;
 }
 .date_time{
-    margin-left: 105px;
+    margin-left: 155px;
     margin-top: 309px;
     position: absolute;
     width: 18px;
