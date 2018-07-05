@@ -10,10 +10,9 @@ function signIn(){
     })
         .done(function(data) {
             if (!data.result) {
-                alert("成功登陆");
                 window.location.href="main.html"
             } else {
-                alert("密码或用户名错误")
+                toastError("密码或用户名错误")
             }
         })
         .fail(function() {
@@ -40,4 +39,24 @@ $(function(){
 });
 function jump(url) {
     window.location.href=url;
+}
+function toastError(title,message) {
+    iziToast.show({
+        class: 'test',
+        color: '#ffffff',
+        icon: 'icon-contacts',
+        title: title,
+        message: message,
+        position: 'topCenter',
+        transitionIn: 'flipInX',
+        transitionOut: 'flipOutX',
+        progressBarColor: 'rgb(0, 255, 184)',
+        image: '../static/images/error_cat.gif',
+        imageWidth: 70,
+        layout:2,
+        onClose: function(){
+            console.info('onClose');
+        },
+        iconColor: 'rgb(0, 255, 184)'
+    });
 }

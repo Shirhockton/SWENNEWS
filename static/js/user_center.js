@@ -15,6 +15,21 @@ $(document).ready(function(){
         }
     });
 });
+function get_user_info() {
+    $.ajax({
+        url: '/SwenNews/api/v1/session',
+        type: 'GET',
+        dataType: 'json'
+    })
+        .done(function(data) {
+            $(".name_user").text(data.username);
+            $(".email_user").text(data.mail);
+            $(".picture_frame").css('background-image',data.avatar);
+        })
+        .fail(function() {
+            console.log("get user information error")
+        })
+}
 function news_list() {
     $(".news_list").append("<li>新闻1</li>")
 }

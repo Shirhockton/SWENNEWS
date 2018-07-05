@@ -36,7 +36,7 @@ return
 
 
 #about register
-GET /SwenNews/api/v1/user?username=&mail=     // username为用户名或邮箱
+GET /SwenNews/api/v1/user?username=      // username为用户名或邮箱
 return
 {
     status: 1/0         //操作结果
@@ -61,7 +61,7 @@ PUT /SwenNews/api/v1/user
 {
     username:         //若不需要修改则不加该字段
 }
-return 
+return
 {
     status:
 }
@@ -70,16 +70,16 @@ return
 PUT /SwenNews/api/v1/user/password
 {
     password:
-    auth_code:        
+    auth_code:
 }
-return 
+return
 {
     status:
 }
 
 修改用户信息（头像）
 PUT /SwenNews/api/v1/user/avatar
-return 
+return
 {
     status:
 }
@@ -126,12 +126,14 @@ return
 }
 
 #about news
-GET /SwenNews/api/v1/news?new_type= & time= & hot=    //返回新闻  规定 type 或者 'all'; time:0表示无限制,1表示最新; hot:0表示无限制，1表示最热
+GET /SwenNews/api/v1/news?page_num=&news_type= & time= & hot=    //返回新闻  规定 type 或者 'all'; time:0表示无限制,1表示最新; hot:0表示无限制，1表示最热
 return
 {
+    status: 0/1
     1 : {
         id:
         title:
+        content:
         news_type:
         username:
         datetime:

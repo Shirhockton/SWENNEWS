@@ -529,7 +529,7 @@ function getParams(key) {
 }
 function getNewestNews(pageNum) {
     $.ajax({
-        url: '/SwenNews/api/v1/news?page_num='+pageNum+'new_type=all&time=1&hot=0',
+        url: '/SwenNews/api/v1/news?page_num='+pageNum+'&news_type=all&time=1&hot=0',
         type: 'GET',
         dataType: 'json'
     })
@@ -555,7 +555,7 @@ function getNewestNews(pageNum) {
 
 function getHotNews(pageNum) {
     $.ajax({
-        url: '/SwenNews/api/v1/news?page_num='+pageNum+'&new_type=all&time=0&hot=1',
+        url: '/SwenNews/api/v1/news?page_num='+pageNum+'news_type=all&time=0&hot=1',
         type: 'GET',
         dataType: 'json'
     })

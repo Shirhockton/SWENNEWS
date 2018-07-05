@@ -92,6 +92,8 @@ ul li{
     cursor: pointer;
 }
 .new{
+    width:92px;
+    height:92px;
     z-index: 15;
     position: fixed;
     right: 101px;
