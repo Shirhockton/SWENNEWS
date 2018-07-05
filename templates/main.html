@@ -5,7 +5,9 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../static/css/main_style.css" />
     <script src="../static/js/jquery-3.3.1.js"></script>
-
+    <script type="text/javascript" src="../static/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.rotate.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
     <script type="text/javascript" src="../static/js/jquery.nicescroll.js"></script>
     <script type="text/javascript" src="../static/js/jquery.nicescroll.min.js"></script>
@@ -30,7 +32,6 @@
                 <li><span class="exit" onclick="logout()">退出登录</span> </li>
             </ul>
         </div>
-        <div class="line"></div>
     </div>
     <div class="tags" >
         <ul class="tag_ul">
@@ -51,6 +52,7 @@
         </div>
     </div>
     <img src="../static/images/navbtn.png" class="new" name="new" id="new" onmousedown="create_news()">
+    <img src="../static/images/navbtn.png" class="new_low" name="new" id="new_low" onmousedown="create_news()">
     <div class="create_news">
         <form class="create_form">
             <ul class="create_ul">
@@ -80,7 +82,7 @@
         <div class="create_confirm" onmousedown="create_confirm()">
         </div>
     </div>
-    <div class="shelter" onclick="shelter_click()"></div>
+    <div class="shelter"></div>
 </div>
 </body>
 </html>

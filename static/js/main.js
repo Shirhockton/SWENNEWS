@@ -237,8 +237,10 @@ function tagged_click() {
     $(".tags").slideToggle("fast");
 }
 function create_news() {
+
     if(!create_flag)
     {
+        $(".new").rotate({animateTo: 225});
         $(".shelter").css('display','block');
         $(".create_news").animate({
             top:'+=1013px'
@@ -248,6 +250,7 @@ function create_news() {
     }
     else
     {
+        $(".new").rotate({animateTo: 0});
         $(".shelter").css('display','none');
         $(".create_news").animate({
             top:'-=1013px'

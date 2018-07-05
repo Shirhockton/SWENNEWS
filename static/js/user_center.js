@@ -182,3 +182,21 @@ function saveInfo() {
             console.log("error")
         })
 }
+function logout() {
+    $.ajax({
+        url: '/SwenNews/api/v1/session',
+        type: 'DELETE',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({"user_id": user_id}),
+    })
+        .done(function(data) {
+            if(1==data.status)
+            {
+                login_flag=false;
+            }
+        })
+        .fail(function() {
+            console.log("log out error")
+        })
+}
