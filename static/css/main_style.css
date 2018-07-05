@@ -403,7 +403,7 @@ input::-webkit-input-placeholder{
 .news_block_author{
     position: absolute;
     margin-top:300px ;
-    margin-left: 28px;
+    margin-left: 150px;
     width: 100px;
     height: 18px;
     font-family: SourceHanSansCN-Normal;
@@ -416,7 +416,7 @@ input::-webkit-input-placeholder{
 }
 .news_block_date{
     position:absolute;
-    margin-left: 184px;
+    margin-left: 20px;
     margin-top: 300px;
     width: 100px;
     height: 18px;
@@ -429,7 +429,7 @@ input::-webkit-input-placeholder{
     color: #878787;
 }
 .head_icon{
-    margin-left: 0px;
+    margin-left: 130px;
     margin-top: 310px;
     position: absolute;
     background: url("../images/head_icon.png");
@@ -437,7 +437,7 @@ input::-webkit-input-placeholder{
     height: 17px;
 }
 .date_time{
-    margin-left: 155px;
+    margin-left: 0px;
     margin-top: 309px;
     position: absolute;
     width: 18px;

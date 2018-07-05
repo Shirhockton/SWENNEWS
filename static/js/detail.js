@@ -24,7 +24,7 @@ $(document).ready(function(){
         }
     });
     t=setTimeout(getNews(load_flag),500)
-    // t=setTimeout(load_(load_flag),500)
+    //t=setTimeout(load_(load_flag),500)
 });
 
 function get_user_info() {
@@ -94,6 +94,14 @@ function load(load_flag,news_type,title,content,username,datetime) {
             .animate({
             top:'-=600px'
         });
+        var count=$(".news_content").text().length
+        var height=137+37*(count/40);
+        $(".date_time_pic").css('margin-top',height+27);
+        $(".head_icon").css('margin-top',height+27);
+        $(".date_time").css('margin-top',height+19);
+        $(".user_name").css('margin-top',height+17);
+        $(".main_in_main").css('height',height+70);
+        $(".main").css('height',height+240);
         load_flag=true;
     }
 }
