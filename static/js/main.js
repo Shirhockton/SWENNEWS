@@ -19,13 +19,17 @@ $(document).ready(function(){
     if(selected==null){
         selected = 1;
     }
-    set_sel();
-    switch (selected){
-        case 1:getNewestNews(page);
-            break;
-        case 2:getHotNews(page);
-        case 3:
+    else{
+        selected=parseInt(selected);
     }
+    set_sel();
+    alert(selected);
+    // switch (selected){
+    //     case 1:getNewestNews(page);
+    //         break;
+    //     case 2:getHotNews(page);
+    //     case 3:
+    // }
 
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
@@ -93,11 +97,13 @@ function set_sel() {
         $(".newest").css('background-image','url(../static/images/selectedBg.png)')
         $(".hot").css('background-image','url(../static/images/blank.png)')
         $(".tagged").css('background-image','url(../static/images/blank.png)')
+        getNewestNews(page);
     }
     else if(2==selected){
         $(".hot").css('background-image','url(../static/images/selectedBg.png)')
         $(".newest").css('background-image','url(../static/images/blank.png)')
         $(".tagged").css('background-image','url(../static/images/blank.png)')
+        getHotNews(page);
     }
     else{
         $(".tagged").css('background-image','url(../static/images/selectedBg.png)')
@@ -535,17 +541,19 @@ function getNewestNews(pageNum) {
     })
         .done(function(data) {
             $.each(data,function (index,item) {
-                $(".news_block_ul").append(
-                    "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
-                    "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
-                    "<li><span class='news_block_title'>"+item.title+"</span><li>" +
-                    "<li><span class='news_block_content'>"+item.content+"</span><li>"+
-                    "<span class='head_icon'></span>"+
-                    "<span class='date_time'></span>"+
-                    "<li><span class='news_block_author'>"+item.username+"</span></li>"+
-                    "<li><span class='news_block_date'>"+item.datetime+"<li>"+
-                    "</ul></div><li>"
-                );
+                if(index!='status'&&index!='error_msg')
+                {
+                    $(".news_block_ul").append(
+                        "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
+                        "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
+                        "<li><span class='news_block_title'>"+item.title+"</span><li>" +
+                        "<li><span class='news_block_content'>"+item.content+"</span><li>"+
+                        "<span class='head_icon'></span>"+
+                        "<span class='date_time'></span>"+
+                        "<li><span class='news_block_author'>"+item.username+"</span></li>"+
+                        "<li><span class='news_block_date'>"+item.datetime+"<li>"+
+                        "</ul></div><li>")
+                }
             })
         })
         .fail(function() {
@@ -561,17 +569,19 @@ function getHotNews(pageNum) {
     })
         .done(function(data) {
             $.each(data,function (index,item) {
-                $(".news_block_ul").append(
-                    "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
-                    "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
-                    "<li><span class='news_block_title'>"+item.title+"</span><li>" +
-                    "<li><span class='news_block_content'>"+item.content+"</span><li>"+
-                    "<span class='head_icon'></span>"+
-                    "<span class='date_time'></span>"+
-                    "<li><span class='news_block_author'>"+item.username+"</span></li>"+
-                    "<li><span class='news_block_date'>"+item.datetime+"<li>"+
-                    "</ul></div><li>"
-                );
+                if(index!='status'&&index!='error_msg'){
+                    $(".news_block_ul").append(
+                        "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
+                        "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
+                        "<li><span class='news_block_title'>"+item.title+"</span><li>" +
+                        "<li><span class='news_block_content'>"+item.content+"</span><li>"+
+                        "<span class='head_icon'></span>"+
+                        "<span class='date_time'></span>"+
+                        "<li><span class='news_block_author'>"+item.username+"</span></li>"+
+                        "<li><span class='news_block_date'>"+item.datetime+"<li>"+
+                        "</ul></div><li>"
+                    );
+                }
             })
         })
         .fail(function() {
@@ -587,17 +597,19 @@ function getTypeNews(pageNum,newsType) {
     })
         .done(function(data) {
             $.each(data,function (index,item) {
-                $(".news_block_ul").append(
-                    "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
-                    "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
-                    "<li><span class='news_block_title'>"+item.title+"</span><li>" +
-                    "<li><span class='news_block_content'>"+item.content+"</span><li>"+
-                    "<span class='head_icon'></span>"+
-                    "<span class='date_time'></span>"+
-                    "<li><span class='news_block_author'>"+item.username+"</span></li>"+
-                    "<li><span class='news_block_date'>"+item.datetime+"<li>"+
-                    "</ul></div><li>"
-                );
+                if(index!='status'&&index!='error_msg'){
+                    $(".news_block_ul").append(
+                        "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
+                        "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
+                        "<li><span class='news_block_title'>"+item.title+"</span><li>" +
+                        "<li><span class='news_block_content'>"+item.content+"</span><li>"+
+                        "<span class='head_icon'></span>"+
+                        "<span class='date_time'></span>"+
+                        "<li><span class='news_block_author'>"+item.username+"</span></li>"+
+                        "<li><span class='news_block_date'>"+item.datetime+"<li>"+
+                        "</ul></div><li>"
+                    );
+                }
             })
         })
         .fail(function() {

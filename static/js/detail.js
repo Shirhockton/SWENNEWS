@@ -3,7 +3,7 @@ var id=-1;
 $(document).ready(function(){
     var slide_flag=false;
     var load_flag=false;
-    id=getParams("id");
+    id=parseInt(getParams("id"));
     get_user_info();
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
@@ -64,7 +64,7 @@ function logout() {
 function getNews(load_flag) {
 
     $.ajax({
-        url: '/SwenNews/api/v1/news/<'+id+'>',
+        url: '/SwenNews/api/v1/news/'+id+'',
         type: 'GET',
         dataType: 'json'
     })
