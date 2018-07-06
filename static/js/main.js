@@ -208,6 +208,9 @@ function tagged_mouse_over() {
     {
         $(".tagged").css('background-image','url(../static/images/buttonDown.png)')
     }
+    else{
+        $(".tags").slideDown("fast");
+    }
 }
 function tagged_mouse_out() {
     if(3==selected)
@@ -478,6 +481,7 @@ function create_confirm() {
     });
     var text="window.location.href=\"main.html?page="+0+"&selected="+selected+"\"";
     var t=setTimeout(text,500);
+    publishNew();
 }
 
 
@@ -537,6 +541,24 @@ function getParams(key) {
         return unescape(r[2]);
     }
     return null;
+}
+function publishNew() {
+    $.ajax({
+        url: '/SwenNews/api/v1/news/news',
+        type: 'POST',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({"title": $(".news_title").val(), "content": $(".news_content").val(),"news_type":$(".tag_text").text()}),
+    })
+        .done(function(data) {
+            if (!data.result) {
+            } else {
+                alert("发送失败")
+            }
+        })
+        .fail(function() {
+            console.log("error")
+        })
 }
 function getNewestNews(pageNum) {
     $.ajax({
