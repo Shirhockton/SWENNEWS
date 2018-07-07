@@ -352,3 +352,10 @@ div.panel{
     margin-top: -105px;
     z-index: 888;
 }
+.my_news_li{
+    line-height: 100px;
+}
+.my_news_list{
+    line-height: 100px;
+    margin-top: 50px;
+}

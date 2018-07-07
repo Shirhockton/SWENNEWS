@@ -27,7 +27,7 @@ $(document).ready(function(){
     //t=setTimeout(load_(load_flag),0)
 });
 function replace_br(str) {
-    var s=str.toString().replace('/r/n', '<br/>');
+    var s=str.toString().replace(\/r/n\g, '<br/>');
     return s;
 }
 function get_user_info() {
@@ -74,8 +74,8 @@ function getNews(load_flag) {
     })
     .done(function(data) {
             console.log(data.id);
-            data.content=replace_br(data.content);
-            load(load_flag,data.news_type,data.title,data.content,data.username,data.datetime);
+            var s=replace_br(data.content);
+            load(load_flag,data.news_type,data.title,s,data.username,data.datetime);
         })
         .fail(function() {
             console.log("error")

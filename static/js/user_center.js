@@ -16,6 +16,33 @@ $(document).ready(function(){
         }
     });
 });
+function get_my_news() {
+    $.ajax({
+        url: '/SwenNews/api/v1/news/list',
+        type: 'GET',
+        dataType: 'json'
+    })
+        .done(function(data) {
+            $.each(data,function (index,item) {
+                if(index!='status'&&index!='error_msg')
+                {
+                    $(".news_block_ul").append(
+                        "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
+                        "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
+                        "<li><span class='news_block_title'>"+item.title+"</span><li>" +
+                        "<li><span class='news_block_content'>"+item.content+"</span><li>"+
+                        "<span class='head_icon'></span>"+
+                        "<span class='date_time'></span>"+
+                        "<li><span class='news_block_author'>"+item.username+"</span></li>"+
+                        "<li><span class='news_block_date'>"+item.datetime+"<li>"+
+                        "</ul></div><li>")
+                }
+            })
+        })
+        .fail(function() {
+            console.log("error")
+        })
+}
 function get_user_info() {
     $.ajax({
         url: '/SwenNews/api/v1/session',
