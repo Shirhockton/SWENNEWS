@@ -27,7 +27,7 @@ $(document).ready(function(){
     //t=setTimeout(load_(load_flag),0)
 });
 function replace_br(str) {
-    var s=str.toString().replace(\/r/n\g, '<br/>');
+    var s=str.toString().replace(/\r\n\r\n/g, '<br/>');
     return s;
 }
 function get_user_info() {
@@ -75,6 +75,7 @@ function getNews(load_flag) {
     .done(function(data) {
             console.log(data.id);
             var s=replace_br(data.content);
+            extra=data.username.toString().split("\r\n\r\n").length;
             load(load_flag,data.news_type,data.title,s,data.username,data.datetime);
         })
         .fail(function() {
@@ -98,7 +99,7 @@ function load(load_flag,news_type,title,content,username,datetime) {
             .animate({
             top:'-=600px'
         });
-        var extra=$(".news_content").text().split('<br>').length;
+        //var extra=$(".news_content").text().split('<br/>').length;
         var count=$(".news_content").text().length
         var height=137+37*(extra+count/40);
         $(".date_time_pic").css('margin-top',height+27);

@@ -3,6 +3,7 @@ var edit_flag=false;
 $(document).ready(function(){
     var slide_flag=false;
     get_user_info();
+    get_my_news();
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
         if(!slide_flag)
@@ -26,22 +27,19 @@ function get_my_news() {
             $.each(data,function (index,item) {
                 if(index!='status'&&index!='error_msg')
                 {
-                    $(".news_block_ul").append(
-                        "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
-                        "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
-                        "<li><span class='news_block_title'>"+item.title+"</span><li>" +
-                        "<li><span class='news_block_content'>"+item.content+"</span><li>"+
-                        "<span class='head_icon'></span>"+
-                        "<span class='date_time'></span>"+
-                        "<li><span class='news_block_author'>"+item.username+"</span></li>"+
-                        "<li><span class='news_block_date'>"+item.datetime+"<li>"+
-                        "</ul></div><li>")
+                    $(".list").append(
+                    "<li><span class='my_news_list' onclick='my_news_click("+item.id+")'>"+item.title+"</span></li>"
+                )
                 }
             })
         })
         .fail(function() {
             console.log("error")
         })
+}
+function my_news_click() {
+    var text="window.location.href=\"detail.html?id="+newsid+"\"";
+    var t=setTimeout(text,500);
 }
 function get_user_info() {
     $.ajax({

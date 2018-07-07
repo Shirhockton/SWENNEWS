@@ -573,6 +573,7 @@ function getNewestNews(pageNum) {
                     $(".news_block_ul").append(
                         "<li><div class='main_block' id='main_block_"+index+"'onmousedown='main_block_click("+item.id+")'>" +"<ul><li>"+
                         "<span class='news_block_tag'>来自话题："+item.news_type+"</span><li>" +
+                        "<li><span class='collect' onclick='collect("+item.id+")'id='collect_"+item.id+"'></span></li>"+
                         "<li><span class='news_block_title'>"+item.title+"</span><li>" +
                         "<li><span class='news_block_content'>"+item.content+"</span><li>"+
                         "<span class='head_icon'></span>"+
@@ -587,7 +588,17 @@ function getNewestNews(pageNum) {
             console.log("error")
         })
 }
-
+function collect(news_id) {
+    if(!collect_flag)
+    {
+        $("#collect_"+news_id).css('background-image','../static/images/collected.png');
+        collect_flag=true;
+    }
+    else{
+        $("#collect_"+news_id).css('background-image','../static/images/uncollected.png');
+        collect_flag=false;
+    }
+}
 function getHotNews(pageNum) {
     $.ajax({
         url: '/SwenNews/api/v1/news?page_num='+pageNum+'&news_type=all&time=0&hot=1',
