@@ -7,6 +7,7 @@ var extra_3=0;
 var comment_amount=0;
 var news_id=-1;
 var image_height=0;
+var img_amount=0;
 $(document).ready(function(){
     var slide_flag=false;
     var load_flag=false;
@@ -86,17 +87,17 @@ function getNews(load_flag) {
             var s=replace_br(data.content);
             extra=data.content.toString().split("\r\n\r\n").length;
             extra_3=data.content.toString().split("<p>").length;
-            var array=data.content.toString().split("\r\n\r\n")
-            var obj=document.getElementsByTagName('img');
-            for(var i=0;i<obj.length;i++){
-                 image_height=image_height+obj[i].offsetWidth;
-            }
+            var array=data.content.toString().split("<p>")
             for(var i=0;i<array.length;i++){
-                extra_2=extra_2+parseInt(array[i].length/40);
+                if(i!=0)
+                {
+                    extra_2=extra_2+parseInt(array[i].length/40);
+                    // alert(array[i])
+                    // alert(extra_2)
+                }
             }
             $.each(data.comments,function (index,item) {
                 comment_amount=comment_amount+1;
-
             })
             load(load_flag,data.news_type,data.title,s,data.username,data.datetime,data.comments);
         })
@@ -123,6 +124,16 @@ function load(load_flag,news_type,title,content,username,datetime,comments) {
             .animate({
             top:'-=600px'
         });
+        var obj=$("img");
+        for(var i=0;i<obj.length;i++){
+            if(i!=0&&i!=1)
+            {
+                // alert($("img").eq(i).css("width"))
+                image_height=image_height+300;
+                obj[i].style.height= 300 + 'px';
+                img_amount=img_amount+1;
+            }
+        }
         $.each(comments,function (index,item) {
             $(".comment_ul").append(
                 "<li class=\"comment_li\">" +
@@ -134,7 +145,10 @@ function load(load_flag,news_type,title,content,username,datetime,comments) {
         })
         //var extra=$(".news_content").text().split('<br/>').length;
         var count=$(".news_content").text().length
-        var height=137+37*(extra+extra_2+extra_3)+image_height;
+        // alert("extra:"+extra)
+        // alert("extra2:"+extra_2)
+        // alert("extra3:"+extra_3)
+        var height=350+ 29*(extra+extra_2+extra_3-img_amount)+image_height;
         $(".date_time_pic").css('margin-top',height+27);
         $(".head_icon").css('margin-top',height+27);
         $(".comment_pic").css('margin-top',height+27);
