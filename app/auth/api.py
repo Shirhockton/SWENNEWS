@@ -238,6 +238,8 @@ def auth_api_collection_delete():
     if args.get("user_id")!=current_user.id:
         return jsonify(re),400
     news=News.query.get(args["news_id"])
+    print(news)
+    print(current_user.collections)
     if not news:
         return jsonify(re),400
     current_user.collections.remove(news)

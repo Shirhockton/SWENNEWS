@@ -210,7 +210,7 @@ POST /SwenNews/api/v1/collection
     news_id:
     user_id:
 }
-return
+return 
 {
     status : 0/1
 }
@@ -233,7 +233,7 @@ POST /SwenNews/api/v1/comment
     news_id:
     user_id:
 }
-return
+return 
 {
     status : 0/1
 }
