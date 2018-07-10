@@ -326,6 +326,7 @@ div.panel{
 }
 
 .keep_data_btn{
+    background: url("../images/keep_data.png");
     position:absolute;
     margin-left: 260px;
     margin-top: 45px;

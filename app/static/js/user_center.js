@@ -1,11 +1,26 @@
-var selected = 1
+var selected;
 var edit_flag=false;
 var current_name;
 var current_ava;
+var user_id_
 $(document).ready(function(){
     var slide_flag=false;
+    selected=getParams("selected");
+    if(selected==null){
+        selected = 1;
+    }
     get_user_info();
-    get_my_news();
+    if(1==selected){
+        $(".my_news").css('background-image','url(../static/images/selectedBg.png)')
+        $(".my_favor").css('background-image','url(../static/images/blank.png)')
+        get_my_news();
+    }
+    else{
+        $(".my_favor").css('background-image','url(../static/images/selectedBg.png)')
+        $(".my_news").css('background-image','url(../static/images/blank.png)')
+        get_my_collection();
+
+    }
     $("body").niceScroll({cursorborder:"",cursorcolor:"#9D9D9D",boxzoom:true});
     $(".user").click(function(){
         if(!slide_flag)
@@ -39,6 +54,27 @@ function get_my_news() {
             console.log("error")
         })
 }
+function get_my_collection() {
+    $.ajax({
+        url: '/SwenNews/api/v1/collection?user_id='+user_id_,
+        type: 'GET',
+        async :false,
+        dataType: 'json'
+    })
+        .done(function(data) {
+            $.each(data,function (index,item) {
+                if(index!='status'&&index!='error_msg')
+                {
+                    $(".list").append(
+                        "<li><span class='my_news_list' onclick='my_news_click("+item.id+")'>"+item.title+"</span></li>"
+                    )
+                }
+            })
+        })
+        .fail(function() {
+            console.log("error")
+        })
+}
 function my_news_click(newsid) {
     var text="window.location.href=\"detail.html?id="+newsid+"\"";
     var t=setTimeout(text,500);
@@ -47,9 +83,12 @@ function get_user_info() {
     $.ajax({
         url: '/SwenNews/api/v1/session',
         type: 'GET',
+        async :false,
         dataType: 'json'
     })
         .done(function(data) {
+            user_id_=data.id
+            // alert(user_id)
             $(".name_user").text(data.username);
             current_name=data.username;
             $(".email_user").text(data.mail);
@@ -83,6 +122,9 @@ function mynews_mouse_out() {
 
 function mynews_mouse_click(){
     selected=1;
+    // $(".list").empty();
+    var text="window.location.href=\"user_center.html?selected="+selected+"\"";
+    setInterval(text,1000);
     $(".my_favor").css('background-image','url(../static/images/blank.png)')
 }
 
@@ -103,6 +145,8 @@ function exit_mouse_out() {
 
 function exit_mouse_click(){
     selected=2;
+    var text="window.location.href=\"user_center.html?selected="+selected+"\"";
+    setInterval(text,1000);
     $(".my_news").css('background-image','url(../static/images/blank.png)')
 }
 function swen_news_click(){
@@ -133,7 +177,10 @@ function keep_data() {
         top:'-=1100px'
     });
     edit_flag=false;
-    saveInfo();
+    alert("before")
+    $(".uploadForm").submit();
+    alert("after")
+    // saveInfo();
 }
 
 function previewHandle(fileDOM) {
@@ -265,4 +312,12 @@ function logout() {
         .fail(function() {
             console.log("log out error")
         })
+}
+function getParams(key) {
+    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
 }

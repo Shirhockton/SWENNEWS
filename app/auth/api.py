@@ -146,7 +146,7 @@ def auth_api_user_password_put():
     #session.remove("auth_code")
     return jsonify({"status":1}),200
 
-@auth.route("/SwenNews/api/v1/user/avatar",methods=["PUT"])
+@auth.route("/SwenNews/api/v1/user/avatar",methods=["POST"])
 @login_required
 def auth_api_user_avatar_put():
     if not current_user.is_authenticated :
