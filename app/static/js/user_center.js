@@ -2,7 +2,7 @@ var selected;
 var edit_flag=false;
 var current_name;
 var current_ava;
-var user_id_
+var user_id_;
 $(document).ready(function(){
     var slide_flag=false;
     selected=getParams("selected");
@@ -93,10 +93,14 @@ function get_user_info() {
             current_name=data.username;
             $(".email_user").text(data.mail);
             $(".user_name").attr('placeholder',data.username);
-            path='..'+data.avatar;
+            var timestamp = (new Date()).valueOf();
+            path='..'+data.avatar+'?'+timestamp;
             current_ava=data.avatar;
             $(".user").attr('src',path);
-            $(".picture_frame").css('background-image',data.avatar);
+            $(".user_image").attr('src',path);
+            ava=data.avatar.replace("/static","..");
+            $(".picture_frame").css('background','url('+path+') no-repeat');
+            $(".picture_frame").css('background-size','220px');
         })
         .fail(function() {
             console.log("get user information error")
@@ -177,10 +181,8 @@ function keep_data() {
         top:'-=1100px'
     });
     edit_flag=false;
-    alert("before")
     $(".uploadForm").submit();
-    alert("after")
-    // saveInfo();
+    saveInfo();
 }
 
 function previewHandle(fileDOM) {
@@ -246,12 +248,13 @@ function saveInfo() {
                 refresh_flag=false;
             })
     }
-    var fd= new FormData();
-    fd.append("pic",document.getElementById("uploadForm").files[0]);
-    alert(fd);
+    // $(".picture_frame").css('background','url(../static/user/avatar/yibai.png) no-repeat');
+    // $(".user").attr("src","../static/user/avatar/yibai.png");
+    var fd= new FormData(document.getElementById("uploadForm"));
+    //fd.append("pic",document.getElementById("uploadForm").files[0]);
     $.ajax({
         url: '/SwenNews/api/v1/user/avatar',
-        type: 'PUT',
+        type: 'POST',
         processData: false,// 告诉jQuery不要去处理发送的数据
         contentType: false,// 告诉jQuery不要去设置Content-Type请求头
         cache: false,
@@ -271,8 +274,8 @@ function saveInfo() {
             refresh_flag=false;
         })
     if(refresh_flag){
-        // var text="window.location.href=\"user_center.html\"";
-        // setInterval(text,5000);
+        var text="window.location.href=\"user_center.html\"";
+        setInterval(text,5000);
     }
 }
 function toastError(title,message) {
@@ -301,7 +304,7 @@ function logout() {
         type: 'DELETE',
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({"user_id": user_id}),
+        data: JSON.stringify({"user_id": user_id_}),
     })
         .done(function(data) {
             if(1==data.status)
@@ -312,6 +315,7 @@ function logout() {
         .fail(function() {
             console.log("log out error")
         })
+    window.location.href="main.html"
 }
 function getParams(key) {
     var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");

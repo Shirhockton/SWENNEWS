@@ -34,8 +34,9 @@ def auth_api_session_get():
         re['error_msg']='can not get info of current user'
         return jsonify(re),403
     re['avatar']="/static/user/avatar/"+str(re['id'])+'.jpg'
-    if  not os.path.isfile(re['avatar']):    
+    if  not os.path.isfile(os.path.join(current_app.config['AVATAR_FOLDER'],str(re['id'])+'.jpg')):
         re['avatar']="/static/user/avatar/0.jpg"
+    print(re)
     return jsonify(re),200
 
 
